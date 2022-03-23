@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>rgb values of colors by Trideepshivam</title>
+	<script src="jquery.js"></script>
+	<style>
+		input[type=text]{
+			font-size:50px;
+			width:100px;
+			margin:20px;
+		}
+		
+	</style>
+	<script>
+		$(document).ready(function(){			
+			$(".combination").change(function(){
+				$(this).next().val($(this).val());
+				$("#d").css("background-color","rgb(" + $("#textr").val() +","+ $("#textg").val() +","+ $("#textb").val()+ ")");
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<div id="d" style="float:left;width:800px;height:600px;border:1px solid aqua;">
+		
+	</div>
+	<div style="width:100px;float:left;margin:50px;">
+		<input type="range" min="0" max="255" value="255" id="r" class="combination">
+		<input type="text" id="textr" value="255">
+		
+		<input type="range" min="0" max="255" value="255" id="g" class="combination">
+		<input type="text" id="textg" value="255">
+		
+		<input type="range" min="0" max="255" value="255" id="b" class="combination">
+		<input type="text" id="textb" value="255">
+	</div>
+	
+</body>
+</html>

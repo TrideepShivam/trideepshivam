@@ -1,0 +1,130 @@
+<html>
+<head>
+    <title>calculator</title>
+	<script src="jquery.js"></script>
+	<style>
+		body{display:flex;align-items:center;justify-content:center;margin:0px;background-image:linear-gradient(to top,aqua,lightblue,dodgerblue,blue);}
+		#main{opacity:0;transition:all 2s;height:600px;width:500px;box-shadow:0px 0 100px black;}
+		#textbox{display:flex;align-items:center;justify-content:center;height:15%;width:100%;background:pink;}
+		#btnfamily{display:flex;flex-wrap:wrap;justify-content:space-around;height:85%;width:100%;background:purple;}
+		#textbox #txt {font-size:40px;border:none;background-color:transparent;}
+		#txt:focus{outline:none;}
+		#btnfamily button:last-child{flex-basis:100%;}
+		.btngrp{font-size:30px;cursor:hand;height:14%;width:33%;border:none;color:white;background:purple;}
+		.btngrp:hover{background:navy;}
+		.btngrp:active{transform:translatey(2px);}
+		#cal{font-weight:bold;font-size:60px;color:purple;background-image:linear-gradient(#eee,#333);}
+		#txtdiv{transition:all 2s;opacity:0;}
+	</style>
+</head>	
+<body onload="style()"> 
+	<div id="txtdiv">
+		<p id="cal">CALCULATOR</p>
+		<p>By TrideepShivam</p>
+	</div>
+	<div id="main">
+		<div id="textbox">
+			<input type= "text" id="txt" placeholder="0" disabled>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$("#C").click(clear);
+				
+				function clear(){
+					$("#txt").val("");
+				}
+				$("#delete").click(function(){					
+					var text = $("#txt").val();
+					if(text == ""){
+						alert("Please Insert a Value First.");
+					}else{
+						$("#txt").val(text.substring(0,text.length-1));
+					}					
+				});
+				$(".btngrp").click(function(){
+					$txt = $("#txt");
+					if($(this).html()!="=" && $(this).html()!="." && $(this).html()!="C" && $(this).html()!="Del"){
+						if($txt.val()=="" && $(this).html()!="%" && $(this).html()!="+" && $(this).html()!="-" && $(this).html()!="*" && $(this).html()!="/"){
+							$txt.val("" + $(this).html());
+						}else{
+							$lastChar = $txt.val().substring($txt.val().length-1);
+							if($.isNumeric($lastChar)){
+								$txt.val($txt.val() + $(this).html());
+							}else if($.isNumeric($(this).html())){
+								$txt.val($txt.val() + $(this).html());
+							}
+						}
+					}						
+				});
+				$("#equal").click(function(){
+					$sum = operate($("#txt").val());
+					$("#txt").val($sum);
+				});
+				setTimeout(function(){					
+					$main = $("#main");
+					$main.css({"transform":"translatex(100px)","opacity":"1"});
+					$txt = $("#txtdiv");
+					$txt.css({"transform":"translatex(-100px)","opacity":"1"});
+				},10);
+			});
+			function operate(operation){
+				return eval(operation);
+			}
+		</script>
+		<script>
+			<!-- function style(){ -->
+				<!-- var main = document.getElementById("main"); -->
+				<!-- var textdiv = document.getElementById("txtdiv"); -->
+				<!-- textdiv.style.transform="translatex(-100px)"; -->
+				<!-- main.style.transform="translatex(100px)"; -->
+				<!-- main.style.opacity="1"; -->
+				<!-- textdiv.style.opacity="1"; -->
+			<!-- } -->
+			<!-- function clearText(){ -->
+				<!-- var text = document.getElementById("txt"); -->
+				<!-- text.value = ""; -->
+			<!-- } -->
+			<!-- function deleteChar(){ -->
+				<!-- var text = document.getElementById("txt"); -->
+				<!-- text.value = text.value.substring(0,text.value.length-1); -->
+			<!-- } -->
+			<!-- function enterValue(element){ -->
+				<!-- var text = document.getElementById("txt"); -->
+				<!-- var str = text.value; -->
+				<!-- if (str == ""){ -->
+					<!-- if(!isNaN(parseInt(element.innerHTML))){ -->
+						<!-- text.value = text.value + element.innerHTML; -->
+					<!-- } -->
+				<!-- }else if((isNaN(parseInt(str.charAt(str.length-1))) && !isNaN(parseInt(element.innerHTML))) || !isNaN(parseInt(str.charAt(str.length-1)))){ -->
+						<!-- text.value = text.value + element.innerHTML;					 -->
+				<!-- } -->
+			<!-- } -->
+			<!-- function result(){ -->
+				<!-- var text = document.getElementById("txt"); -->
+				<!-- text.value = eval(text.value); <!-- used for evaluate result of expression --> -->
+			<!-- } -->
+		</script>
+		<div id="btnfamily">
+			<button id="C" class="btngrp" >C</button> 
+			<button id="delete" class="btngrp" >Del</button>
+			<button id="percent" class="btngrp" >%</button>
+			<button id="one" class="btngrp" >1</button>
+			<button id="two" class="btngrp" >2</button>
+			<button id="plus" class="btngrp" >+</button>
+			<button id="three" class="btngrp" >3</button>
+			<button id="four" class="btngrp" >4</button>
+			<button id="minus" class="btngrp" >-</button>
+			<button id="five" class="btngrp" >5</button>
+			<button id="six" class="btngrp" >6</button>
+			<button id="multiply" class="btngrp" >*</button>
+			<button id="seven" class="btngrp" >7</button>
+			<button id="eight" class="btngrp" >8</button>
+			<button id="division" class="btngrp" >/</button>
+			<button id="nine" class="btngrp" >9</button>
+			<button id="zero" class="btngrp" >0</button>
+			<button id="dot" class="btngrp">.</button>
+			<button id="equal" class="btngrp" >=</button>			
+		</div>
+	</div>
+</body>
+</html>

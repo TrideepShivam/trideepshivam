@@ -1,0 +1,224 @@
+<!DOCKTYPE html>
+<html>
+<head>
+	<script src="jquery.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+	<style>body{margin:0;display:flex;
+			align-items:center;
+			justify-content:center;}		
+		#main{
+			background-image:url("flood.jpg");
+			background-size:cover;
+			background-position:center;
+			filter:blur(3px);
+			width:100%;
+			height:100%;
+			}
+		.div{
+			background:rgba(255,255,255,.1);
+			width:40%;
+			height:60%;
+			border:1px solid aqua;
+			border-radius:10px;
+			box-shadow:0 10px 20px black;
+			position:absolute;
+			overflow:hidden;
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			justify-content:center;
+			
+		}
+		.glassmorphism{
+			width:100px;
+			height:100%;
+			background:rgba(255,255,255,.3);
+			position:absolute;
+			right:-100px;
+			box-shadow:0 0 50px rgba(255,255,255,.4);
+			transition:all 1s;
+		}
+		#btnin,#btnin2{background:seagreen;}
+		#btnup,#btnup2{background:tomato;}
+		#cancel,#cancel2,#cancel3{background:red;}
+		#btnin:hover{background:rgba(255,255,255,.1);}
+		#btnup:hover{background:rgba(255,255,255,.1);}
+		#cancel:hover{background:rgba(255,255,255,.1);}
+.buttonfamily-fc1{
+	margin:1%;
+	border:0;
+	padding:15px 50px;
+	font-size:25px;
+	cursor:hand;
+	color:white;
+	border-radius:20px;
+	box-shadow:0 10px 10px rgba(0,0,0,.5);
+	transition:all .5s;
+}
+.buttonfamily-fc1:hover{
+	background:rgba(255,255,255,.1);
+	text-shadow:0 0 5px purple;
+	box-shadow:0 0px 20px rgb(0,0,0);
+	transform:scale(1.2);
+}
+.buttonfamily-fc1:active{
+	transform:translatey(2px);	
+}
+		#signin{
+			height:80%;
+			width:40%;
+			left:0px;
+			display:none;
+			opacity:0;
+		}
+		.txt{
+			font-size:30px;
+			background:rgba(255,255,255,.3);
+			border:none;
+			border-radius:10px;
+			padding:10px 25px;
+			margin:2%;
+			text-align:center;
+		}
+		.txt:focus{outline:none;}
+		#signup{
+			height:80%;
+			width:50%;
+			display:none;
+			right:0px;
+			opacity:0;
+			flex-direction:row;
+			flex-wrap:wrap;
+		}
+		tr td:first-child{
+			font-size:25px;
+			color:purple;
+		}
+		tr .txt{font-size:20px;}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$("#cancel").click(function(){
+				window.close();
+			});
+			$(".div").hover(function(){
+				$glass = $(this).find(".glassmorphism");
+				$glass.css({"right":"101%"});
+			},function(){
+			$glass = $(this).find(".glassmorphism");<!-- next(); -->
+			$glass.css({"right":"-101px"});
+			});
+			$("#btnin").click(function(){
+				$home = $(this).parent();
+				$home.animate({
+					bottom:"0px",
+					opacity:"0"
+				},800).hide(0);
+				$sin = $home.next();
+				$sin.css("display","flex");
+				$sin.show().animate({
+					left:"30%",
+					opacity:"1",
+				},1000);
+			});
+			$("#cancel2").click(function(){
+				$sin = $(this).parent();
+				$sin.animate({
+					left:"0px",
+					opacity:"0"
+				},800).hide(0);
+				$home = $sin.prev();
+				$home.show().animate({
+					bottom:"20%",
+					opacity:"1"
+				},800);
+			});
+			$("#btnup").click(function(){
+				$home = $(this).parent();
+				$home.animate({
+					bottom:"0px",
+					opacity:"0"
+				},800).hide(0);
+				$sup = $home.next().next();
+				$sup.css("display","flex");
+				$sup.show().animate({
+					right:"25%",
+					opacity:"1",
+				},1000);
+			});
+			$("#cancel3").click(function(){
+				$sup = $(this).parent();
+				$sup.animate({
+					right:"0px",
+					opacity:"0"
+				},800).hide(0);
+				$home = $sup.prev().prev();
+				$home.show().animate({
+					bottom:"20%",
+					opacity:"1"
+				},800);
+			});
+		});
+	</script>
+</head>
+<body>	
+<div id="main"></div>
+	<h1 id="mainHead" style="position:absolute;top:1%;color:purple;text-shadow:0 0 5px purple;">FLOOD RELIEF ORGANIZATION</h1>
+	<div id="home" class="div">
+	<div class="glassmorphism"></div>
+		<button id="btnin" class="buttonfamily-fc1">Sign in</button>
+		<button id="btnup" class="buttonfamily-fc1">Sign up</button>
+		<button id="cancel" class="buttonfamily-fc1">Cancel</button>
+	</div>
+	<div id="signin" class="div">
+	<div class="glassmorphism"></div>
+		<input type="text" class="txt" placeholder="E-mail or Phone">
+		<input type="password" class="txt" placeholder="Password">
+		<button id="btnin2" class="buttonfamily-fc1">Sign in</button>
+		<button id="cancel2" class="buttonfamily-fc1" >Cancel</button>
+		<a id="link" href="#" style="text-decoration:none;color:white;text-align:center;font-size:20px;padding-top:5%;">Terms & Conditions</a>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div id="signup" class="div">
+	<div class="glassmorphism"></div>
+	  <table style="margin-top:25px;">
+	   <tr>
+		<td>First Name</td>
+		<td><input type="text" class="txt" placeholder="First Name"></td>
+	   </tr>
+	   <tr>
+		<td>Second Name</td>
+		<td><input type="text" class="txt" placeholder="Second Name"></td>
+	   </tr>
+	   <tr>
+	    <td>Phone</td>
+		<td><input type="text" class="txt" placeholder="Phone"></td>
+	   </tr>
+	   <tr>
+	    <td>E-mail</td>
+	    <td><input type="text" class="txt" placeholder="E-mail"></td>
+	   </tr>
+	   <tr>
+	    <td>New Password</td>
+	    <td><input type="text" class="txt" placeholder="Enter Password"></td>
+	   </tr>
+	   <tr>
+	    <td>Re-Enter Password</td>
+		<td><input type="text" class="txt" placeholder="Re-Enter Password"></td>
+	   </tr>		
+	  </table>
+	  <div style="width:100%;color:white;font-size:20px;text-align:center;"><input type="checkbox" ><label>I accept Terms and Conditions.</label></div>
+	  <button style="float:left" id="btnup2" class="buttonfamily-fc1" >Sign in</button>
+	  <button id="cancel3" class="buttonfamily-fc1" >Cancel</button>
+	</div>
+
+</body>
+</html>

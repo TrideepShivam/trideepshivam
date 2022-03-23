@@ -1,0 +1,352 @@
+<!DOCKTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="work.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+	<style>
+		*{transition:all .5s;color:white;}
+		body{font-family:calibri;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		margin:0;background-image:linear-gradient(45deg, red,tomato,purple);
+		}
+		#mainmodal{
+			width:0%;
+			height:100%;
+			background-color:rgba(0,0,0,0.8);
+			display:flex;
+			justify-content:space-around;
+			align-items:center;
+			position:absolute;
+			top:0px;
+			opacity:0;
+			transition: all 1s ease;
+			overflow:hidden;
+		}
+		#parentmsgbox{
+			width:50%;
+			height:50%;
+			background-image:linear-gradient(30deg,rgb(100,0,100),rgb(40,0,40));
+			border-radius:20px;
+			overflow:hidden;
+			position:relative;
+		}
+		#x{
+			padding:5px 10px;
+			float:right;
+			margin:1%;
+		}
+		#form{
+			height:80%;
+			width:70%;
+			border:1px solid aqua;
+			border-radius:10px;
+			box-shadow:0 0 10px green, 0 0 20px black;
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			align-items:center;
+		}
+		#test{
+			width:200px;
+			height:300px;
+			background:lightblue;
+		}
+		.elementcontainer{
+			width:90%;
+			height:auto;
+			margin:1%;
+			background:transparent;
+		}
+		
+		.choose{
+			width:75%;
+			font-size:25px;
+			background:transparent;
+			float:left;
+			border:none;
+			transition:all .5s;
+		}
+		.choose:focus{outline:none;}
+		.choose option{background:lightblue;transition:all .5s;color:seagreen;}
+		.choose option:hover{background:rgba(0,0,0,.2);}
+		.chkcontainer{display:block;}
+		.chkcontainer label{font-size:30px;}
+		.chkbox{height:20px;width:25px;margin:10px;}
+		.effectives{
+			font-size:22px;
+		}
+		.itemprice{color:aqua;font-size:30px;}
+	</style>
+	<script>
+		var allPrice = [];
+		var allItems = [];
+		window.addEventListener("load",main);
+		function show(){
+			if(document.getElementById("selectproduct").value == "Choose your Product" || document.getElementById("name").value == "" || document.getElementById("contact").value == "" || document.getElementById("selectfeature").value == "Add additionals"){
+				alert("NAME, CONTACT, PRODUCT and FEATURES are required to fill.");
+			}else{
+				var modal = document.getElementById("mainmodal");
+				var itemprice=document.getElementsByClassName("itemprice");
+				var items = document.getElementsByClassName("effectives");
+				items[0].innerHTML= document.getElementById("selectproduct").value;
+				items[1].innerHTML= document.getElementById("selectfeature").value;
+				items[2].innerHTML= getAdditionals();
+				document.getElementById("includelist").style.listStyleType="none";				
+				itemprice[0].innerHTML = document.getElementById("productprice").value;
+				itemprice[1].innerHTML = document.getElementById("featureprice").value;
+				itemprice[2].innerHTML = document.getElementById("additionalprice").value;
+				document.getElementById("total").innerHTML = getTotal(itemprice) + "/-";
+				modal.style.width="100%";
+				modal.style.opacity="1";
+			}
+		}
+		function getAdditionals(){
+			if(allPrice.length <=0){
+				return "NONE";
+			}else{
+				var text = "<ul id='includelist'>";
+				for(i=0;i<allPrice.length;i++){
+					text = text + "<li>" + allItems[i] + " : " + allPrice[i] + "/-</li>";
+				}
+				text = text + "</ul>";
+				return text;
+			}
+		}
+		function getTotal(price){
+			var total=0;
+			for(i = 0; i<3; i= i+1){
+				var text = price[i].innerHTML;
+				text = text.substring(0,text.length-2);
+				total=total + parseInt(text);
+			}
+			return total;
+		}
+		function main(){
+		document.getElementById("form").style.backgroundImage="linear-gradient(25deg,rgba(50,50,50,.8),rgb(20,20,20,.8))";
+		document.getElementById("btn").addEventListener("click",show);
+		document.getElementById("x").addEventListener("click",close);
+		}	
+		function close(){
+			var main = document.getElementById("mainmodal");
+			main.style.width="0";
+			main.style.opacity="0";
+		}
+		function checkedAnyOne(c,p){
+			var price = document.getElementById("additionalprice");
+			if(c.checked){
+				price.value= parseInt(price.value) + parseInt(p) + "/-";
+				allPrice.push(parseInt(p));
+				allItems.push(c.nextElementSibling.innerHTML);
+			}
+			else{
+				price.value= parseInt(price.value) - parseInt(p);
+				allPrice.splice(allPrice.indexOf(parseInt(p)),1);
+				allItems.splice(allItems.indexOf(c.nextElementSibling.innerHTML),1)
+			}
+			var chk =document.getElementsByClassName(c.className);
+			for(i=0;i<chk.length;i++){
+				if(chk[i].checked){
+					sethead(chk[0].parentElement);
+				}
+			}
+		}
+		
+		
+		function setproductprice(val){
+			document.getElementById("includingcontainer").disabled = false;
+			var price = document.getElementById("productprice");
+			switch(val){
+				case "Pizza":
+					price.value="75/-";
+					break;
+				case "Burger":
+					price.value="49/-";
+					break;
+				case "Sandwitch":
+					price.value="30/-";
+					break;
+				case "Paneer roll":
+					price.value="35/-";
+					break;
+				case "Cheese roll":
+					price.value="30/-";
+					break;
+				default:
+					alert("please select any product first")
+			}
+		}
+		
+		function setfeatureprice(val){
+			var price = document.getElementById("featureprice");
+			switch(val){
+				case "Extra cheese":
+					price.value="15/-";
+					break;
+				case "Extra sauce":
+					price.value="12/-";
+					break;
+				case "Extra spicy":
+					price.value="10/-";
+					break;
+				case "Extra cheese":
+					price.value="17/-";
+					break;
+				case "Extra butter":
+					price.value="25/-";
+					break;
+				case "None":
+					price.value="0/-";
+					break;
+				default:
+					alert("please select any product first")
+			}
+		}
+	</script>
+	<style>
+		.txtcontainer{
+			width:40%;
+			border:none;
+			background:transparent;
+			border-bottom:1px solid cornflowerblue;
+		}
+		.txtname{
+			position:relative;
+			border:none;
+			font-size:30px;
+			width:100%;
+			background:transparent;
+		}
+		.txtname:focus{
+			outline:none;
+		}
+		.topname{
+			color:grey;
+			transform:scale(2) translate(10px,15px);
+			transition:all .3s linear;
+		}
+	</style>
+</head>
+<body>	
+	<div id = "form">
+		<div class="elementcontainer">
+			<fieldset id="namecontainer" class="txtcontainer" style="float:left;">
+				<legend class="topname">NAME:</legend>
+				<input id="name" class="txtname" type="text" onfocusout="sethead2(this)" onfocus="sethead(this)" >
+			</fieldset>
+			<script>
+			function sethead(t){
+				text=t.previousElementSibling;
+				box =t.parentElement;
+				text.style.transform="scale(1) translate(0px,0px)";
+				box.style.borderRadius="10px";
+				box.style.border="1px solid aqua";
+				text.style.color="white";
+			}
+			function sethead2(t){
+				if(t.value==""){
+					text=t.previousElementSibling;
+					box =t.parentElement;
+					box.style.border="none";
+					box.style.borderBottom="1px solid cornflowerblue";
+					text.style.transform="scale(2) translate(10px,15px)";
+					box.style.borderRadius="0px";
+					text.style.color="grey";
+				}
+			}
+			</script>
+			<fieldset id="contactcontainer" class="txtcontainer" style="float:right;">
+				<legend class="topname">CONTACT:</legend>
+				<input id="contact" type="text" class="txtname" onfocusout="sethead2(this)" onfocus="sethead(this)">
+			</fieldset>
+		</div>
+		<div class="elementcontainer">
+			<fieldset id="productcontainer" class="txtcontainer" style="float:left;">
+				<legend class="topname">PRODUCT:</legend>
+				<select onchange="setproductprice(this.value)" id="selectproduct" class="choose" onfocusout="sethead2(this)" onfocus="sethead(this)">
+					<option style="appearence:none;"></option>
+					<option>Pizza</option>
+					<option>Burger</option>
+					<option>Sandwitch</option>
+					<option>Paneer roll</option>
+					<option>Cheese roll</option>
+				</select>
+				<input value="0/-" id="productprice" type="text" style="padding-left:5%;float:right;width:20%;background:transparent;font-size:25px;border:none;" disabled>
+				
+			</fieldset>
+			<fieldset id="featurecontainer" class="txtcontainer" style="float:right;">
+				<legend class="topname">FEATURES:</legend>
+				<select onchange="setfeatureprice(this.value)" id="selectfeature" class="choose" onfocusout="sethead2(this)" onfocus="sethead(this)">
+					<option>Extra cheese</option>
+					<option>Extra sauce</option>
+					<option>Extra spicy</option>
+					<option>Extra butter</option>
+					<option>None</option>
+				</select>
+				<input value="0/-" id="featureprice" type="text" style="padding-left:5%;float:right;width:20%;background:transparent;font-size:25px;border:none;" disabled>
+			</fieldset>
+		</div>
+		<div class="elementcontainer">
+			<fieldset id="includingcontainer" class="txtcontainer" style="float:left;" disabled>
+				<legend id="includingTopname" class="topname">ADDITIONALS:</legend>
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'20')" class="chkbox" type="checkbox"><label class="chkoptions">Water</label>
+				</div>
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'25')" class="chkbox" type="checkbox"><label class="chkoptions">Chips</label>
+				</div>
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'45')" class="chkbox" type="checkbox"><label class="chkoptions">Popcorn</label>
+				</div>
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'75')" class="chkbox" type="checkbox"><label class="chkoptions">Mocktail</label>
+				</div class="chkcontainer">
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'50')" class="chkbox" type="checkbox"><label class="chkoptions">Cold drink</label>
+				</div>
+				<div class="chkcontainer">
+					<input onchange="checkedAnyOne(this,'49')" class="chkbox" type="checkbox"><label class="chkoptions">Ice cream</label>
+				</div>
+			</fieldset>
+			<input value="0/-" id="additionalprice" type="text" style="float:right;width:100px;background:transparent;font-size:40px;border:none;" disabled>
+		</div>
+				
+		<button style="padding:20 80;" id="btn" class="buttonfamily-fc2 " >Submit</button>
+	</div>
+	<div id="mainmodal" >
+		<div>
+			<h1 style="color:green;font-size:60px;float:left;background:linear-gradient(#eee,#333);">FOODMART.COM</h1>
+			<h1 style="color:white;font-family: 'Dancing Script', cursive;">Thanks for choosing us.</h1>
+		</div>
+		<div id="parentmsgbox">
+			<button id="x" class="buttonfamily-fc2">X</button>
+			<table cellpadding="2px" style="margin:8px;">
+				<tr>
+					<td><h2>Your are ordering :</h2></td>
+					<td class="effectives">content</td>
+					<td class="itemprice"></td>
+				</tr>
+				<tr>
+					<td><h2>With :</h2></td>					
+					<td class="effectives">content</td>
+					<td class="itemprice"></td>
+				</tr>
+				<tr>
+					<td><h2>Includings :</h2></td>
+					<td class="effectives">content</td>
+					<td class="itemprice"></td>
+				</tr>
+			</table>
+			<div style="position:relative;bottom:100px;display:flex;flex-direction:column;justify-content:center;align-items:center;margin:5px;width:100px;height:100px;float:right;background:rgb(30,150,70);border-radius:20px;box-shadow:0 0 5px black;">
+				<label>TOTAL</label>
+				<div><label id = "total" style="font-size:30;">0/-</label></div>
+			</div>
+			<button style="padding:15 50;position:absolute;bottom:5px;left:40%;" id="btn" class="buttonfamily-fc2 " >OK</button>
+			
+		</div>
+	</div>
+</body>
+</html>
