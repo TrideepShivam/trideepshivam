@@ -2,11 +2,11 @@ all methods and its descriptions for javascipt used styles.
 
 use this content delivery network to add main.js style methods...
 
-	  <script src='https://cdn.statically.io/gh/TrideepShivam/Form-Generator/main/jsCode/main.js'></script>
+	  <script src='https://cdn.statically.io/gh/TrideepShivam/trideepshivam/main/jsCode/main.js'></script>
     
 for css style please link the cdn of mainStyle.css as...
 
-	<link rel='stylesheet' type='text/css' href='https://cdn.statically.io/gh/TrideepShivam/Form-Generator/main/cssCode/mainStyle.css'>
+	<link rel='stylesheet' type='text/css' href='https://cdn.statically.io/gh/TrideepShivam/trideepshivam/main/cssCode/mainStyle.css'>
   
 describe here all the new methods with argument and the description.
 
