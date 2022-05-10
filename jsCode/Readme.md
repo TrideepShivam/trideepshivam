@@ -2,7 +2,7 @@ all methods and its descriptions for javascipt used styles.
 
 use this content delivery network to add main.js style methods...		
 		
-		<script src='https://cdn.statically.io/gh/TrideepShivam/Form-Generator/main/jsCode/main.js'></script>
+		<script src='https://cdn.statically.io/gh/TrideepShivam/trideepshivam/main/jsCode/main.js'></script>
 
 Methods:-
 
