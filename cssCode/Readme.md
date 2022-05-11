@@ -14,7 +14,7 @@ simply add the class name with its detailed style....
 2. class="btnjoin"
     html:
 
-        <a class="btnfamily"><span>Join</span></a>
+        <a class="btnjoin"><span>Join</span></a>
     
     desc:
       just use mentioned cdn and set the class name of any element as class="btnjoin" and get 'animated text on hover effect'.
