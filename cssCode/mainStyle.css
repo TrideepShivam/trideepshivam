@@ -462,7 +462,7 @@
     padding: 10px;
     position: absolute;
     bottom: 50px;
-    left: calc((100% - 325px)/2);
+    left: calc((100% - 300px)/2);
     text-align: center;
     animation: displayNotification .5s ease;
 }
