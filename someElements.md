@@ -76,6 +76,14 @@ description: use above html code to create a range into a cantainer box with val
 7. notifyMe('msg','color');
 
 description: use above method with arguments to create a notification box with argumented message at the bottom center of the body. it includes 300px width with a top centered close button to disappear the notification box. color argument will be used to set your notification box border and close box border. it will appear from opacity 0 to 1.
+	if you wanna display some error, success or general notification, just send red, green or white color or it's color code as argument.
+
+8. displayToolTip(event,element,msg);
+
+description: use above method with essential agruments. event is any type of mouse event, element is the element on which the tooltip will be shown and msg is the displayable msg. all all argumented then the method will create a tooltip for you and the tooltip class is 'tooltipBoard' with will be styled also with internal css implementation.
+
+
+
 
 
 
