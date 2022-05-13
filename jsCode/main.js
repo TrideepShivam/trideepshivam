@@ -128,23 +128,23 @@ function getTrafficLight(objs)
 
 
 function popuprangeinput(elem,max){
-	let pointers=elem.previousElementSibling;
-	let runDiv=elem.nextElementSibling;
-	let valuess=elem .value;
-	let maximum=max/100;
-	pointers.innerHTML=valuess;
-	pointers.style.left=(valuess/maximum)+"%";
-	runDiv.style.width=(valuess/maximum)+"%";
+    let pointers=elem.previousElementSibling;
+    let runDiv=elem.nextElementSibling;
+    let valuess=elem .value;
+    let maximum=max/100;
+    pointers.innerHTML=valuess;
+    pointers.style.left=(valuess/maximum)+"%";
+    runDiv.style.width=(valuess/maximum)+"%";
 }
 
 
 function boxWalaRange(obj){
-	let divNumber=obj.nextElementSibling;
-	divNumber.innerHTML=obj .value;
-	let valdig=parseInt(obj .value)-200;
-	obj.style.background="rgb(50,"+obj.value+","+valdig+")";
-	obj.parentElement.style.borderColor="rgb(50,"+obj.value+","+valdig+")";
-	divNumber.style.color="rgb(50,"+obj.value+","+valdig+")";
+    let divNumber=obj.nextElementSibling;
+    divNumber.innerHTML=obj .value;
+    let valdig=parseInt(obj .value)-200;
+    obj.style.background="rgb(50,"+obj.value+","+valdig+")";
+    obj.parentElement.style.borderColor="rgb(50,"+obj.value+","+valdig+")";
+    divNumber.style.color="rgb(50,"+obj.value+","+valdig+")";
 }
 
 
@@ -164,7 +164,7 @@ function notifyMe(msg='Please provide a message.',c='yellow'){
     });
 } 
 
-function toolTip(e,ele,msg='Please provide a message.'){
+function displayToolTip    (e,ele,msg='Please provide a message.'){
     let prevEle=ele.previousElementSibling;
     let createToolTip = false;
     if(prevEle!=null){
