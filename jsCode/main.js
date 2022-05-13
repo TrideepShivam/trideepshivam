@@ -164,8 +164,29 @@ function notifyMe(msg='Please provide a message.',c='yellow'){
     });
 } 
 
-
-
+function toolTip(e,ele,msg='Please provide a message.'){
+    let prevEle=ele.previousElementSibling;
+    let createToolTip = false;
+    if(prevEle!=null){
+        if(prevEle.className != 'tooltipBoard'){
+            createToolTip=true;
+        }
+    }else{
+        createToolTip=true;
+    }
+    if(createToolTip){
+        let newContainer = document.createElement("div");
+        newContainer.setAttribute('class','tooltipBoard');
+        let txt = document.createTextNode(msg);
+        newContainer.style.cssText="left:"+(e.pageX-100)+"px;top:"+(e.pageY-75)+"px;";
+        newContainer.appendChild(txt);
+    
+        ele.parentNode.insertBefore(newContainer,ele);
+        setTimeout(function(){
+            newContainer.remove();
+        },4000);
+    }
+}
 
 
 
