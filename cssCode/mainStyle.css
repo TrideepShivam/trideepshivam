@@ -467,7 +467,6 @@
     text-align: center;
     animation: displayNotification .5s ease;
 }
-
 @keyframes displayNotification {
     0% {
         opacity: 0;
@@ -479,7 +478,16 @@
         bottom: 50px;
     }
 }
-
+.tooltipBoard::after{
+    content:'';
+    width:10px;
+    height:10px;
+    background:inherit;
+    position:absolute;
+    left:45%;
+    top:90%;
+    transform:rotate(45deg);
+}
 .tooltipBoard {
     z-index:10;
     color: #dfdfdf;
