@@ -91,7 +91,7 @@ simply add the class name with its detailed style....
     desc:
       just use mentioned cdn and set the class name of checkbox as class="labelTextboxaajtak" it will create a beautifull textbox which contain a heading always.
 
-1. class="btnRoundedBorderDanger"
+12. class="btnRoundedBorderDanger"
     html:
 
         <button class="btnRoundedBorderDanger">click me</button>

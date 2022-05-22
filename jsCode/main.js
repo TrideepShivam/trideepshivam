@@ -178,7 +178,7 @@ function displayToolTip    (e,ele,msg='Please provide a message.'){
         let newContainer = document.createElement("div");
         newContainer.setAttribute('class','tooltipBoard');
         let txt = document.createTextNode(msg);
-        newContainer.style.cssText="left:"+(e.pageX-100)+"px;top:"+(e.pageY-75)+"px;";
+        newContainer.style.cssText="left:"+(e.pageX-100)+"px;top:"+(e.pageY+25)+"px;";
         newContainer.appendChild(txt);
     
         ele.parentNode.insertBefore(newContainer,ele);
