@@ -207,6 +207,7 @@
      }
  .containerCircleCheckboxgk label{
          position: relative;
+		 bottom:10px;
      }
  .containerCircleCheckboxgk label::before{
          content: "";
