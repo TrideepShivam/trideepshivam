@@ -93,15 +93,15 @@ function checkNullValue(t){
 }
 
 function outerCheckboxGlow(ele){
-	 if(ele .childNodes[1].checked==false)
+	 if(ele .children[0].checked==false)
 	 {
-		ele .childNodes[1].checked=true;
+		ele .children[0].checked=true;
 		ele .style .cssText="border:3px solid skyblue;background:rgba(105,105,105);color:skyblue;text-shadow:0px 0px 1.8px rgba(135,206,235) inset;box-shadow:0px 0px 3px rgba(135,206,235) inset;";	
 	 }
 	 else{
-		ele .childNodes[1].checked=false;
+		ele .children[0].checked=false;
 		ele .style.cssText="border:3px solid gray;color:rgb(105,105,105);";
-		ele .firstChild.style.cssText="text-shadow:0px 0px 0px skyblue";
+		ele .children[0].style.cssText="text-shadow:0px 0px 0px skyblue";
 	 }	 
 }
 
